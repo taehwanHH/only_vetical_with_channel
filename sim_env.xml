@@ -1,0 +1,77 @@
+<mujoco model="left_allegro_hand scene">
+  <include file="multi_robot.xml"/>
+  <statistic center="0 0 0" extent="5"/>
+  <option timestep="0.001" gravity="0 0 -9.81" /> <!-- 중력 설정 추가 -->
+
+
+  <visual>
+    <rgba haze="0.15 0.25 0.35 1"/>
+    <quality shadowsize="0"/>
+<!--    <global azimuth="220" elevation="-40"/>-->
+
+  </visual>
+
+  <asset>
+    <texture type="skybox" builtin="gradient" rgb1="0.3 0.5 0.7" rgb2="0 0 0" width="512" height="3072"/>
+    <texture type="2d" name="groundplane" builtin="checker" mark="edge" rgb1="0.2 0.3 0.4" rgb2="0.1 0.2 0.3"
+      markrgb="0.8 0.8 0.8" width="300" height="300"/>
+    <material name="groundplane" texture="groundplane" texuniform="true" texrepeat="5 5" reflectance="0.2"/>
+    <material name="red" rgba="1 0 0 1"/>
+    <material name="green" rgba="0 1 0 1"/>
+    <material name="blue" rgba="0 0 1 1"/>
+  </asset>
+
+  <worldbody>
+<!--     &lt;!&ndash; X-axis (Red) &ndash;&gt;-->
+<!--    <geom type="capsule" fromto="0 0 0 1 0 0" size="0.01" material="red"/>-->
+<!--    &lt;!&ndash; Y-axis (Green) &ndash;&gt;-->
+<!--    <geom type="capsule" fromto="0 0 0 0 1 0" size="0.01" material="green"/>-->
+<!--    &lt;!&ndash; Z-axis (Blue) &ndash;&gt;-->
+<!--    <geom type="capsule" fromto="0 0 0 0 0 1" size="0.01" material="blue"/>-->
+    <light pos="0 0 1"/>
+    <light pos="0.3 0 1.5" dir="0 0 -1" directional="true"/>
+    <geom name="floor" pos="0 0 0" size="0 0 0.05" type="plane" material="groundplane"/>
+     <!-- 상자 객체 -->
+    <body name="box" pos="0 0 1.3" >
+        <freejoint/>
+        <geom name="box_geom" type="box" size="1.3 1.0 0.05" rgba="1 0 0 1" condim="6" priority="1" friction="0.2 0.5 0.2" mass="100"/>
+    </body>
+  </worldbody>
+  <contact>
+    <!-- 로봇 팔의 엔드 이펙터와 박스 간의 접촉 설정 -->
+    <pair geom1="robot1_ee_geom" geom2="box_geom" condim="6" friction="0.1 0.4 0.1"  solimp="0.9 0.95 0.001" solref="0.02 1"/>
+    <pair geom1="robot2_ee_geom" geom2="box_geom" condim="6" friction="0.1 0.3 0.1"  solimp="0.9 0.95 0.001" solref="0.02 1"/>
+    <pair geom1="robot3_ee_geom" geom2="box_geom" condim="6" friction="0.1 0.3 0.1"  solimp="0.9 0.95 0.001" solref="0.02 1"/>
+    <pair geom1="robot4_ee_geom" geom2="box_geom" condim="6" friction="0.1 0.3 0.1"  solimp="0.9 0.95 0.001" solref="0.02 1"/>
+
+    <pair geom1="robot1_touch_geom_1" geom2="box_geom" condim="6" friction="0.1 0.3 0.1"  solimp="0.9 0.95 0.001" solref="0.02 1"/>
+    <pair geom1="robot1_touch_geom_2" geom2="box_geom" condim="6" friction="0.1 0.3 0.1"  solimp="0.9 0.95 0.001" solref="0.02 1"/>
+    <pair geom1="robot1_touch_geom_3" geom2="box_geom" condim="6" friction="0.1 0.3 0.1"  solimp="0.9 0.95 0.001" solref="0.02 1"/>
+    <pair geom1="robot1_touch_geom_4" geom2="box_geom" condim="6" friction="0.1 0.3 0.1"  solimp="0.9 0.95 0.001" solref="0.02 1"/>
+    <pair geom1="robot1_touch_geom_5" geom2="box_geom" condim="6" friction="0.1 0.3 0.1"  solimp="0.9 0.95 0.001" solref="0.02 1"/>
+    
+    <pair geom1="robot2_touch_geom_1" geom2="box_geom" condim="6" friction="0.1 0.3 0.1"  solimp="0.9 0.95 0.001" solref="0.02 1"/>
+    <pair geom1="robot2_touch_geom_2" geom2="box_geom" condim="6" friction="0.1 0.3 0.1"  solimp="0.9 0.95 0.001" solref="0.02 1"/>
+    <pair geom1="robot2_touch_geom_3" geom2="box_geom" condim="6" friction="0.1 0.3 0.1"  solimp="0.9 0.95 0.001" solref="0.02 1"/>
+    <pair geom1="robot2_touch_geom_4" geom2="box_geom" condim="6" friction="0.1 0.3 0.1"  solimp="0.9 0.95 0.001" solref="0.02 1"/>
+    <pair geom1="robot2_touch_geom_5" geom2="box_geom" condim="6" friction="0.1 0.3 0.1"  solimp="0.9 0.95 0.001" solref="0.02 1"/>
+    
+    <pair geom1="robot3_touch_geom_1" geom2="box_geom" condim="6" friction="0.1 0.3 0.1"  solimp="0.9 0.95 0.001" solref="0.02 1"/>
+    <pair geom1="robot3_touch_geom_2" geom2="box_geom" condim="6" friction="0.1 0.3 0.1"  solimp="0.9 0.95 0.001" solref="0.02 1"/>
+    <pair geom1="robot3_touch_geom_3" geom2="box_geom" condim="6" friction="0.1 0.3 0.1"  solimp="0.9 0.95 0.001" solref="0.02 1"/>
+    <pair geom1="robot3_touch_geom_4" geom2="box_geom" condim="6" friction="0.1 0.3 0.1"  solimp="0.9 0.95 0.001" solref="0.02 1"/>
+    <pair geom1="robot3_touch_geom_5" geom2="box_geom" condim="6" friction="0.1 0.3 0.1"  solimp="0.9 0.95 0.001" solref="0.02 1"/>
+    
+    <pair geom1="robot4_touch_geom_1" geom2="box_geom" condim="6" friction="0.1 0.3 0.1"  solimp="0.9 0.95 0.001" solref="0.02 1"/>
+    <pair geom1="robot4_touch_geom_2" geom2="box_geom" condim="6" friction="0.1 0.3 0.1"  solimp="0.9 0.95 0.001" solref="0.02 1"/>
+    <pair geom1="robot4_touch_geom_3" geom2="box_geom" condim="6" friction="0.1 0.3 0.1"  solimp="0.9 0.95 0.001" solref="0.02 1"/>
+    <pair geom1="robot4_touch_geom_4" geom2="box_geom" condim="6" friction="0.1 0.3 0.1"  solimp="0.9 0.95 0.001" solref="0.02 1"/>
+    <pair geom1="robot4_touch_geom_5" geom2="box_geom" condim="6" friction="0.1 0.3 0.1"  solimp="0.9 0.95 0.001" solref="0.02 1"/>
+
+    <pair geom1="robot1_link3_geom" geom2="box_geom" condim="6" friction="0.1 0.3 0.1"  solimp="0.9 0.95 0.001" solref="0.02 1"/>
+    <pair geom1="robot2_link3_geom" geom2="box_geom" condim="6" friction="0.1 0.3 0.1"  solimp="0.9 0.95 0.001" solref="0.02 1"/>
+    <pair geom1="robot3_link3_geom" geom2="box_geom" condim="6" friction="0.1 0.3 0.1"  solimp="0.9 0.95 0.001" solref="0.02 1"/>
+    <pair geom1="robot4_link3_geom" geom2="box_geom" condim="6" friction="0.1 0.3 0.1"  solimp="0.9 0.95 0.001" solref="0.02 1"/>
+
+  </contact>
+</mujoco>

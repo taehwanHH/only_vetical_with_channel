@@ -1,0 +1,239 @@
+<mujoco model="custom_environment">
+    <compiler angle="radian" meshdir="assets"/>
+    <option cone="elliptic" impratio="10" iterations="50" tolerance="1e-6" solver="Newton"/>
+    <asset>
+        <!-- 추가적인 자산 (예: 메쉬 파일, 텍스처 등)을 여기 추가할 수 있습니다 -->
+    </asset>
+
+    <default>
+        <default class="robot_geom">
+            <geom type="cylinder" size="0.05 0.2" pos="0 0 0.2" rgba="0 0 0 1" contype="1" conaffinity="1"/>
+        </default>
+        <default class="guide_geom">
+            <geom type="cylinder" size="0.025 0.45" pos="0 0 0.4"/>
+        </default>
+        <default class="vertical_joint">
+            <joint type="slide" axis="0 0 1" pos="0 0 0" range="0 3" armature="0.005" stiffness="1000" damping="10000"/>
+        </default>
+        <default class="sensor_geom">
+            <geom type="sphere" size="0.01" pos="0 0 0" rgba="1 0 0 0" contype="1" conaffinity="1"/>
+        </default>
+
+    </default>
+
+    <worldbody>
+        <!-- 로봇 1 -->
+        <body name="robot1" pos="-0.3 0.3 0.0" quat="-0.3827 0 0 0.9239">
+            <body name="robot1_link1" pos="0 0 0">
+                <joint name="robot1_vertical_joint" class="vertical_joint" damping="100000"/>
+                <geom name="robot1_link1_geom" class="robot_geom"/>
+                <body name="robot1_link2" pos="0 0 0.4">
+                    <joint name="robot1_vertical_joint2" class="vertical_joint"/>
+                    <geom name="robot1_link2_geom" class="robot_geom" />
+                    <body name="robot1_link3" pos="0 0 0.4">
+                        <joint name="robot1_vertical_joint3" class="vertical_joint"/>
+                        <geom name="robot1_link3_geom" class="robot_geom" />
+                        <body name="robot1_end_effector" pos="0 0 0.4">
+                            <geom name="robot1_ee_geom" type="sphere" size="0.05" pos="0 0 0"/>
+                            <!--touch_sensor-->
+                            <geom name="robot1_touch_geom_1" type="sphere" size="0.01" pos="0 0 0.049" rgba="1 0 0 0.5"/>
+                            <site name="robot1_sensor_1" pos="0 0 0.049" size="0.01" rgba="1 0 0 1"/>
+                            <geom name="robot1_touch_geom_2" type="sphere" size="0.01" pos="0.0177 0.0177 0.0433" rgba="1 0 0 0.5"/>
+                            <site name="robot1_sensor_2" pos="0.0177 0.0177 0.0433" size="0.01" rgba="1 0 0 1"/>
+                            <geom name="robot1_touch_geom_3" type="sphere" size="0.01" pos="-0.0177 0.0177 0.0433" rgba="1 0 0 0.5"/>
+                            <site name="robot1_sensor_3" pos="-0.0177 0.0177 0.0433" size="0.01" rgba="1 0 0 1"/>
+                            <geom name="robot1_touch_geom_4" type="sphere" size="0.01" pos="-0.0177 -0.0177 0.0433" rgba="1 0 0 0.5"/>
+                            <site name="robot1_sensor_4" pos="-0.0177 -0.0177 0.0433" size="0.01" rgba="1 0 0 1"/>
+                            <geom name="robot1_touch_geom_5" type="sphere" size="0.01" pos="0.0177 -0.0177 0.0433" rgba="1 0 0 0.5"/>
+                            <site name="robot1_sensor_5" pos="0.0177 -0.0177 0.0433" size="0.01" rgba="1 0 0 1"/>
+
+                        </body>
+                    </body>
+                    <body name="robot1_guide2" pos="0 0 0">
+                        <geom name="robot1_guide2_geom" class="guide_geom"/>
+                    </body>
+                </body>
+                <body name="robot1_guide" pos="0 0 0">
+                    <geom name="robot1_guide_geom" class="guide_geom"/>
+                </body>
+            </body>
+        </body>
+                <!-- 로봇 2 -->
+        <body name="robot2" pos="-0.3 -0.4 0.0" quat="-0.9239 0 0 0.3827">
+            <body name="robot2_link1" pos="0 0 0">
+                <joint name="robot2_vertical_joint" class="vertical_joint" damping="100000"/>
+                <geom name="robot2_link1_geom" class="robot_geom"/>
+                <body name="robot2_link2" pos="0 0 0.4">
+                    <joint name="robot2_vertical_joint2" class="vertical_joint"/>
+                    <geom name="robot2_link2_geom" class="robot_geom"  />
+                    <body name="robot2_link3" pos="0 0 0.4">
+                        <joint name="robot2_vertical_joint3" class="vertical_joint"/>
+                        <geom name="robot2_link3_geom" class="robot_geom" />
+                        <body name="robot2_end_effector" pos="0 0 0.4">
+                            <geom name="robot2_ee_geom" type="sphere" size="0.05" pos="0 0 0"/>
+                            <!--touch_sensor-->
+                            <geom name="robot2_touch_geom_1" type="sphere" size="0.01" pos="0 0 0.049" rgba="1 0 0 0.5"/>
+                            <site name="robot2_sensor_1" pos="0 0 0.049" size="0.01" rgba="1 0 0 1"/>
+                            <geom name="robot2_touch_geom_2" type="sphere" size="0.01" pos="0.0177 0.0177 0.0433" rgba="1 0 0 0.5"/>
+                            <site name="robot2_sensor_2" pos="0.0177 0.0177 0.0433" size="0.01" rgba="1 0 0 1"/>
+                            <geom name="robot2_touch_geom_3" type="sphere" size="0.01" pos="-0.0177 0.0177 0.0433" rgba="1 0 0 0.5"/>
+                            <site name="robot2_sensor_3" pos="-0.0177 0.0177 0.0433" size="0.01" rgba="1 0 0 1"/>
+                            <geom name="robot2_touch_geom_4" type="sphere" size="0.01" pos="-0.0177 -0.0177 0.0433" rgba="1 0 0 0.5"/>
+                            <site name="robot2_sensor_4" pos="-0.0177 -0.0177 0.0433" size="0.01" rgba="1 0 0 1"/>
+                            <geom name="robot2_touch_geom_5" type="sphere" size="0.01" pos="0.0177 -0.0177 0.0433" rgba="1 0 0 0.5"/>
+                            <site name="robot2_sensor_5" pos="0.0177 -0.0177 0.0433" size="0.01" rgba="1 0 0 1"/>
+
+
+                        </body>
+                    </body>
+                    <body name="robot2_guide2" pos="0 0 0">
+                        <geom name="robot2_guide2_geom" class="guide_geom"/>
+                    </body>
+                </body>
+                <body name="robot2_guide" pos="0 0 0">
+                    <geom name="robot2_guide_geom" class="guide_geom"/>
+                </body>
+            </body>
+        </body>
+                <!-- 로봇 3 -->
+        <body name="robot3" pos="0.5 -0.5 0" quat="0.3827 0 0 0.9239">
+            <body name="robot3_link1" pos="0 0 0">
+                <joint name="robot3_vertical_joint" class="vertical_joint" damping="100000"/>
+                <geom name="robot3_link1_geom" class="robot_geom"/>
+                <body name="robot3_link2" pos="0 0 0.4">
+                    <joint name="robot3_vertical_joint2" class="vertical_joint"/>
+                    <geom name="robot3_link2_geom" class="robot_geom"  />
+                    <body name="robot3_link3" pos="0 0 0.4">
+                        <joint name="robot3_vertical_joint3" class="vertical_joint"/>
+                        <geom name="robot3_link3_geom" class="robot_geom"/>
+                        <body name="robot3_end_effector" pos="0 0 0.4">
+                            <geom name="robot3_ee_geom" type="sphere" size="0.05" pos="0 0 0"/>
+                            <!--touch_sensor-->
+                            <geom name="robot3_touch_geom_1" type="sphere" size="0.01" pos="0 0 0.049" rgba="1 0 0 0.5"/>
+                            <site name="robot3_sensor_1" pos="0 0 0.049" size="0.01" rgba="1 0 0 1"/>
+                            <geom name="robot3_touch_geom_2" type="sphere" size="0.01" pos="0.0177 0.0177 0.0433" rgba="1 0 0 0.5"/>
+                            <site name="robot3_sensor_2" pos="0.0177 0.0177 0.0433" size="0.01" rgba="1 0 0 1"/>
+                            <geom name="robot3_touch_geom_3" type="sphere" size="0.01" pos="-0.0177 0.0177 0.0433" rgba="1 0 0 0.5"/>
+                            <site name="robot3_sensor_3" pos="-0.0177 0.0177 0.0433" size="0.01" rgba="1 0 0 1"/>
+                            <geom name="robot3_touch_geom_4" type="sphere" size="0.01" pos="-0.0177 -0.0177 0.0433" rgba="1 0 0 0.5"/>
+                            <site name="robot3_sensor_4" pos="-0.0177 -0.0177 0.0433" size="0.01" rgba="1 0 0 1"/>
+                            <geom name="robot3_touch_geom_5" type="sphere" size="0.01" pos="0.0177 -0.0177 0.0433" rgba="1 0 0 0.5"/>
+                            <site name="robot3_sensor_5" pos="0.0177 -0.0177 0.0433" size="0.01" rgba="1 0 0 1"/>
+
+                         </body>
+                    </body>
+                    <body name="robot3_guide2" pos="0 0 0">
+                        <geom name="robot3_guide2_geom" class="guide_geom"/>
+                        <geom name="touch_geom3" class="sensor_geom"/>
+
+                    </body>
+                </body>
+                <body name="robot3_guide" pos="0 0 0">
+                    <geom name="robot3_guide_geom" class="guide_geom"/>
+                </body>
+            </body>
+        </body>
+                <!-- 로봇 4 -->
+        <body name="robot4" pos="0.2 0.5 0" quat="0.9239 0 0 0.3827">
+            <body name="robot4_link1" pos="0 0 0">
+                <joint name="robot4_vertical_joint" class="vertical_joint" damping="100000"/>
+                <geom name="robot4_link1_geom" class="robot_geom"/>
+                <body name="robot4_link2" pos="0 0 0.4">
+                    <joint name="robot4_vertical_joint2" class="vertical_joint"/>
+                    <geom name="robot4_link2_geom" class="robot_geom" />z
+                    <body name="robot4_link3" pos="0 0 0.4">
+                        <joint name="robot4_vertical_joint3" class="vertical_joint"/>
+                        <geom name="robot4_link3_geom" class="robot_geom"/>
+                        <body name="robot4_end_effector" pos="0 0 0.4">
+                            <geom name="robot4_ee_geom" type="sphere" size="0.05" pos="0 0 0"/>
+<!--                            <site name="ee_touch_site4" type="sphere" pos="0 0 0" size="0.05" rgba="0 0 0 1"/>-->
+                            <!--touch_sensor-->
+                            <geom name="robot4_touch_geom_1" type="sphere" size="0.01" pos="0 0 0.049" rgba="1 0 0 0.5"/>
+                            <site name="robot4_sensor_1" pos="0 0 0.049" size="0.01" rgba="1 0 0 1"/>
+                            <geom name="robot4_touch_geom_2" type="sphere" size="0.01" pos="0.0177 0.0177 0.0433" rgba="1 0 0 0.5"/>
+                            <site name="robot4_sensor_2" pos="0.0177 0.0177 0.0433" size="0.01" rgba="1 0 0 1"/>
+                            <geom name="robot4_touch_geom_3" type="sphere" size="0.01" pos="-0.0177 0.0177 0.0433" rgba="1 0 0 0.5"/>
+                            <site name="robot4_sensor_3" pos="-0.0177 0.0177 0.0433" size="0.01" rgba="1 0 0 1"/>
+                            <geom name="robot4_touch_geom_4" type="sphere" size="0.01" pos="-0.0177 -0.0177 0.0433" rgba="1 0 0 0.5"/>
+                            <site name="robot4_sensor_4" pos="-0.0177 -0.0177 0.0433" size="0.01" rgba="1 0 0 1"/>
+                            <geom name="robot4_touch_geom_5" type="sphere" size="0.01" pos="0.0177 -0.0177 0.0433" rgba="1 0 0 0.5"/>
+                            <site name="robot4_sensor_5" pos="0.0177 -0.0177 0.0433" size="0.01" rgba="1 0 0 1"/>
+
+                        </body>
+                    </body>
+                    <body name="robot4_guide2" pos="0 0 0">
+                        <geom name="robot4_guide2_geom" class="guide_geom"/>
+                    </body>
+                </body>
+                <body name="robot4_guide" pos="0 0 0">
+                    <geom name="robot4_guide_geom" class="guide_geom"/>
+                </body>
+            </body>
+        </body>
+    </worldbody>
+
+    <actuator>
+        <!-- 로봇 1 액추에이터 -->
+        <position joint="robot1_vertical_joint" name="1_actuator_joint" kp="2000" />
+        <position joint="robot1_vertical_joint2" name="1_actuator_joint2" kp="10000"/>
+        <position joint="robot1_vertical_joint3" name="1_actuator_joint3" kp="10000"/>
+         <!-- 로봇 2 액추에이터 -->
+        <position joint="robot2_vertical_joint" name="2_actuator_joint" kp="2000"/>
+        <position joint="robot2_vertical_joint2" name="2_actuator_joint2" kp="10000"/>
+        <position joint="robot2_vertical_joint3" name="2_actuator_joint3" kp="10000"/>
+         <!-- 로봇 2 액추에이터 -->
+        <position joint="robot3_vertical_joint" name="3_actuator_joint" kp="2000"/>
+        <position joint="robot3_vertical_joint2" name="3_actuator_joint2" kp="10000"/>
+        <position joint="robot3_vertical_joint3" name="3_actuator_joint3" kp="10000"/>
+         <!-- 로봇 2 액추에이터 -->
+        <position joint="robot4_vertical_joint" name="4_actuator_joint" kp="2000"/>
+        <position joint="robot4_vertical_joint2" name="4_actuator_joint2" kp="10000"/>
+        <position joint="robot4_vertical_joint3" name="4_actuator_joint3" kp="10000"/>
+
+    </actuator>
+
+    <sensor>
+        <!-- 터치 센서 -->
+        <touch name="robot1_sensor1" site="robot1_sensor_1"/>
+        <touch name="robot1_sensor2" site="robot1_sensor_2"/>
+        <touch name="robot1_sensor3" site="robot1_sensor_3"/>
+        <touch name="robot1_sensor4" site="robot1_sensor_4"/>
+        <touch name="robot1_sensor5" site="robot1_sensor_5"/>
+
+        <touch name="robot2_sensor1" site="robot2_sensor_1"/>
+        <touch name="robot2_sensor2" site="robot2_sensor_2"/>
+        <touch name="robot2_sensor3" site="robot2_sensor_3"/>
+        <touch name="robot2_sensor4" site="robot2_sensor_4"/>
+        <touch name="robot2_sensor5" site="robot2_sensor_5"/>
+
+        <touch name="robot3_sensor1" site="robot3_sensor_1"/>
+        <touch name="robot3_sensor2" site="robot3_sensor_2"/>
+        <touch name="robot3_sensor3" site="robot3_sensor_3"/>
+        <touch name="robot3_sensor4" site="robot3_sensor_4"/>
+        <touch name="robot3_sensor5" site="robot3_sensor_5"/>
+
+        <touch name="robot4_sensor1" site="robot4_sensor_1"/>
+        <touch name="robot4_sensor2" site="robot4_sensor_2"/>
+        <touch name="robot4_sensor3" site="robot4_sensor_3"/>
+        <touch name="robot4_sensor4" site="robot4_sensor_4"/>
+        <touch name="robot4_sensor5" site="robot4_sensor_5"/>
+
+    </sensor>
+
+    <contact>
+        <!-- 로봇 1 충돌 쌍 -->
+        <pair geom1="robot1_link1_geom" geom2="robot1_link2_geom"/>
+        <pair geom1="robot1_link2_geom" geom2="robot1_link3_geom"/>
+        <!-- 로봇 2 충돌 쌍 -->
+        <pair geom1="robot2_link1_geom" geom2="robot2_link2_geom"/>
+        <pair geom1="robot2_link2_geom" geom2="robot2_link3_geom"/>
+        <!-- 로봇 3 충돌 쌍 -->
+        <pair geom1="robot3_link1_geom" geom2="robot3_link2_geom"/>
+        <pair geom1="robot3_link2_geom" geom2="robot3_link3_geom"/>
+        <!-- 로봇 4 충돌 쌍 -->
+        <pair geom1="robot4_link1_geom" geom2="robot4_link2_geom"/>
+        <pair geom1="robot4_link2_geom" geom2="robot4_link3_geom"/>
+
+    </contact>
+
+</mujoco>
